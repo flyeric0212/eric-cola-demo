@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>top.flyeric</groupId>
+    <artifactId>eric-cola-demo-parent</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>Eric-Cola-Demo</name>
+
+    <properties>
+        <java.version>21</java.version>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <maven.deploy.skip>true</maven.deploy.skip>
+
+        <spring-boot.version>3.2.0</spring-boot.version>
+        <lombok.version>1.18.30</lombok.version>
+        <org.mapstruct.version>1.5.5.Final</org.mapstruct.version>
+
+        <component.dto.version>1.0.5-SNAPSHOT</component.dto.version>
+        <component.exception.version>1.0.5-SNAPSHOT</component.exception.version>
+        <component.logging.version>1.0.5-SNAPSHOT</component.logging.version>
+        <component.db.version>1.0.5-SNAPSHOT</component.db.version>
+        <component.web.core.version>1.0.5-SNAPSHOT</component.web.core.version>
+    </properties>
+
+    <modules>
+        <module>eric-cola-demo-client</module>
+        <module>eric-cola-demo-adapter</module>
+        <module>eric-cola-demo-app</module>
+        <module>eric-cola-demo-domain</module>
+        <module>eric-cola-demo-infrastructure</module>
+        <module>start</module>
+    </modules>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+            <!--Project modules-->
+            <dependency>
+                <groupId>top.flyeric</groupId>
+                <artifactId>eric-cola-demo-adapter</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>top.flyeric</groupId>
+                <artifactId>eric-cola-demo-client</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>top.flyeric</groupId>
+                <artifactId>eric-cola-demo-app</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>top.flyeric</groupId>
+                <artifactId>eric-cola-demo-domain</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>top.flyeric</groupId>
+                <artifactId>eric-cola-demo-infrastructure</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <!--Project modules End-->
+
+            <!-- String Frameworks Start -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!-- String Frameworks End -->
+
+            <!-- Misc -->
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct</artifactId>
+                <version>${org.mapstruct.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>1.2.83</version>
+            </dependency>
+
+            <!-- Misc End -->
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>3.3.0</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.10.1</version>
+                    <configuration>
+                        <source>${java.version}</source>
+                        <target>${java.version}</target>
+                        <encoding>${project.build.sourceEncoding}</encoding>
+                        <parameters>true</parameters>
+                        <annotationProcessorPaths>
+                            <!-- Lombok -->
+                            <path>
+                                <groupId>org.projectlombok</groupId>
+                                <artifactId>lombok</artifactId>
+                                <version>${lombok.version}</version>
+                            </path>
+                            <!-- mapstruct -->
+                            <path>
+                                <groupId>org.mapstruct</groupId>
+                                <artifactId>mapstruct-processor</artifactId>
+                                <version>${org.mapstruct.version}</version>
+                            </path>
+                        </annotationProcessorPaths>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-source-plugin</artifactId>
+                    <version>3.2.1</version>
+                </plugin>
+                <!--                <plugin>-->
+                <!--                    <artifactId>maven-javadoc-plugin</artifactId>-->
+                <!--                    <version>3.4.0</version>-->
+                <!--                </plugin>-->
+                <!--                <plugin>-->
+                <!--                     <artifactId>maven-deploy-plugin</artifactId>-->
+                <!--                    <version>3.0.0</version>-->
+                <!--                </plugin>-->
+
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <version>${spring-boot.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+</project>
