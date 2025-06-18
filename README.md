@@ -2,7 +2,7 @@
 
 refer to：https://flyeric.top/archives/alibaba-cola-4.0-practices
 
-![image-20240514133257882](https://pic-bed-1256249917.cos.ap-chengdu.myqcloud.com/uPic/image-20240514133257882.png)
+![image-20240514133257882](images/ddd-class-diagram.png)
 
 
 ## MySQL Setup
